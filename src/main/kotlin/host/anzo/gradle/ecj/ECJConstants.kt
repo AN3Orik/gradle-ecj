@@ -14,5 +14,5 @@ public object ECJConstants {
     public val PREFERRED_JAVA_VERSION: Int = 22
 
     /* The version required to run ECJ. */
-    public val REQUIRED_JAVA_VERSION: Int = 22
+    public val REQUIRED_JAVA_VERSION: Int = 17
 }

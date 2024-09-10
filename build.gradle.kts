@@ -19,7 +19,7 @@ java {
 }
 
 group = "host.anzo.gradle.ecj"
-version = "1.0"
+version = "1.1"
 
 kotlin {
     explicitApi()
@@ -28,8 +28,8 @@ kotlin {
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {
-                    apiVersion = KotlinVersion.KOTLIN_2_2
-                    languageVersion = KotlinVersion.KOTLIN_2_2
+                    apiVersion = KotlinVersion.KOTLIN_1_7
+                    languageVersion = KotlinVersion.KOTLIN_1_7
                 }
             }
         }
@@ -37,8 +37,8 @@ kotlin {
         compilations.named("main").configure {
             compileTaskProvider.configure {
                 compilerOptions {
-                    apiVersion = KotlinVersion.KOTLIN_2_2
-                    languageVersion = KotlinVersion.KOTLIN_2_2
+                    apiVersion = KotlinVersion.KOTLIN_1_7
+                    languageVersion = KotlinVersion.KOTLIN_1_7
                 }
             }
         }
@@ -67,12 +67,12 @@ samWithReceiver {
 
 tasks {
     withType<JavaCompile>().configureEach {
-        options.release = 22
+        options.release = 17
     }
 
     withType<KotlinCompile>().configureEach {
         compilerOptions {
-            jvmTarget = JvmTarget.JVM_22
+            jvmTarget = JvmTarget.JVM_17
         }
     }
 

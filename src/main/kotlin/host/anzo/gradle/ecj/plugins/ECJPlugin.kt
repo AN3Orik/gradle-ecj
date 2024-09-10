@@ -13,6 +13,7 @@ import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.compile.*
 import org.gradle.jvm.toolchain.*
 import org.gradle.process.CommandLineArgumentProvider
+import java.io.File
 
 public class ECJPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = applyTo(target) project@ {
@@ -66,7 +67,7 @@ public class ECJPlugin : Plugin<Project> {
                     println("ECJ: Compiling project [${project.name}]...")
 
                     var lombokPath = ""
-                    val it = options.annotationProcessorPath?.iterator();
+                    val it = options.annotationProcessorPath?.iterator()
                     if (it != null) {
                         while (it.hasNext()) {
                             val jar = it.next()
@@ -78,7 +79,7 @@ public class ECJPlugin : Plugin<Project> {
                         }
                         // Annotation processing support
                         options.compilerArgs?.add("--processor-module-path")
-                        options.compilerArgs?.add(options.annotationProcessorPath?.joinToString(";"))
+                        options.compilerArgs?.add(options.annotationProcessorPath?.joinToString(File.pathSeparator))
                     }
 
                     val javacExecutable = javaCompiler.orElse(defaultJavaCompiler).get().executablePath.asFile
