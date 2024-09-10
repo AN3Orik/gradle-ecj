@@ -43,7 +43,6 @@ public class ECJPlugin : Plugin<Project> {
         tasks.withType(JavaCompile::class.java).configureEach {
             /* ECJ does not support generating JNI headers. Make sure the property is not used. */
             options.headerOutputDirectory.set(provider { null })
-
             options.isFork = true
             options.forkOptions.jvmArgumentProviders.add(ECJCommandLineArgumentProvider(ecjConfiguration))
 
@@ -64,21 +63,22 @@ public class ECJPlugin : Plugin<Project> {
             @Suppress("ObjectLiteralToLambda")
             doFirst(object : Action<Task> {
                 override fun execute(t: Task) {
-                    println("Compiling project [${project.name}] via ECJ...")
-
-                    // Lombok support for ECJ
-                    val annotationProcessorConfiguration = project.configurations.getByName("annotationProcessor")
-                    val annotationProcessorJars =
-                        annotationProcessorConfiguration.resolvedConfiguration.firstLevelModuleDependencies
-                            .flatMap { it.moduleArtifacts }
-                            .map { it.file }
-                            .filter { it.extension == "jar" }
+                    println("ECJ: Compiling project [${project.name}]...")
 
                     var lombokPath = ""
-                    for (jar in annotationProcessorJars) {
-                        if (jar.path.contains("lombok-")) {
-                            lombokPath = jar.path
+                    val it = options.annotationProcessorPath?.iterator();
+                    if (it != null) {
+                        while (it.hasNext()) {
+                            val jar = it.next()
+                            if (jar.path.contains("lombok-")) {
+                                // Lombok support for ECJ
+                                lombokPath = jar.path
+                                break
+                            }
                         }
+                        // Annotation processing support
+                        options.compilerArgs?.add("--processor-module-path")
+                        options.compilerArgs?.add(options.annotationProcessorPath?.joinToString(";"))
                     }
 
                     val javacExecutable = javaCompiler.orElse(defaultJavaCompiler).get().executablePath.asFile
@@ -89,6 +89,7 @@ public class ECJPlugin : Plugin<Project> {
                     options.forkOptions.executable = javaExecutable.absolutePath
 
                     if (lombokPath.isNotEmpty()) {
+                        // Lombok agent must be first
                         options.forkOptions.jvmArgs?.add(0, "-javaagent:$lombokPath=ECJ")
                     }
                 }
@@ -98,7 +99,7 @@ public class ECJPlugin : Plugin<Project> {
 
     private class ECJCommandLineArgumentProvider(@get:Classpath val compilerClasspath: FileCollection) : CommandLineArgumentProvider {
         override fun asArguments(): MutableIterable<String> {
-            return mutableListOf("-cp", compilerClasspath.asPath, MAIN, "-nowarn")
+            return mutableListOf("-classpath", compilerClasspath.asPath, MAIN, "-nowarn")
         }
     }
 }

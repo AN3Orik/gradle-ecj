@@ -3,10 +3,10 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    alias(libs.plugins.binary.compatibility.validator)
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.plugin.samwithreceiver)
-    alias(libs.plugins.plugin.publish)
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version("0.16.3")
+    id("org.jetbrains.kotlin.jvm") version("2.0.20")
+    id("org.jetbrains.kotlin.plugin.sam.with.receiver") version("2.0.20")
+    id("com.gradle.plugin-publish") version("1.2.2")
 }
 
 repositories {
@@ -17,6 +17,9 @@ java {
     withJavadocJar()
     withSourcesJar()
 }
+
+group = "host.anzo.gradle.ecj"
+version = "1.0"
 
 kotlin {
     explicitApi()
@@ -41,9 +44,6 @@ kotlin {
         }
     }
 }
-
-group = "host.anzo.gradle.ecj"
-version = "1.0"
 
 gradlePlugin {
     website = "https://github.com/AN3Orik/gradle-ecj"
@@ -81,8 +81,4 @@ tasks {
         isReproducibleFileOrder = true
         includeEmptyDirs = false
     }
-}
-
-dependencies {
-    compileOnlyApi(kotlin("stdlib"))
 }
