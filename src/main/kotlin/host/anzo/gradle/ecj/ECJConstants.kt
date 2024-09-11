@@ -6,12 +6,12 @@ public object ECJConstants {
 
     public val DEFAULT_DEPENDENCY_GROUP: String = "org.eclipse.jdt"
     public val DEFAULT_DEPENDENCY_ARTIFACT: String = "ecj"
-    public val DEFAULT_DEPENDENCY_VERSION: String = "3.38.0"
+    public val DEFAULT_DEPENDENCY_VERSION: String = "3.39.0"
 
     public val MAIN: String = "org.eclipse.jdt.internal.compiler.batch.Main"
 
     /* The version for which a toolchain is requested if the project's toolchain is not compatible. */
-    public val PREFERRED_JAVA_VERSION: Int = 22
+    public val PREFERRED_JAVA_VERSION: Int = 17
 
     /* The version required to run ECJ. */
     public val REQUIRED_JAVA_VERSION: Int = 17
