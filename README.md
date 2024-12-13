@@ -21,6 +21,6 @@ plugins {
 }
 
 dependencies {
-    ecj("org.eclipse.jdt:ecj:3.39.0")
+    ecj("org.eclipse.jdt:ecj:3.40.0")
 }
 ```

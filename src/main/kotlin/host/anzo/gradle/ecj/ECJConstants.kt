@@ -6,7 +6,7 @@ public object ECJConstants {
 
     public val DEFAULT_DEPENDENCY_GROUP: String = "org.eclipse.jdt"
     public val DEFAULT_DEPENDENCY_ARTIFACT: String = "ecj"
-    public val DEFAULT_DEPENDENCY_VERSION: String = "3.39.0"
+    public val DEFAULT_DEPENDENCY_VERSION: String = "3.40.0"
 
     public val MAIN: String = "org.eclipse.jdt.internal.compiler.batch.Main"
 
