@@ -53,8 +53,8 @@ public class ECJPlugin : Plugin<Project> {
                         ?: error("Could not get launcher for toolchain: ${java.toolchain}")
                 } else {
                     javaToolchains.compilerFor {
-                        languageVersion.set(JavaLanguageVersion.of(PREFERRED_JAVA_VERSION))
-                    }.orNull ?: error("Could not provision launcher for Java $PREFERRED_JAVA_VERSION")
+                        languageVersion.set(PREFERRED_JAVA_VERSION)
+                    }.orNull ?: error("Could not provision launcher for Java ${PREFERRED_JAVA_VERSION.asInt()}")
                 }
             }
 

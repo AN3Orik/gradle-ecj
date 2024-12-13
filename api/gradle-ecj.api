@@ -5,8 +5,8 @@ public final class host/anzo/gradle/ecj/ECJConstants {
 	public final fun getDEFAULT_DEPENDENCY_VERSION ()Ljava/lang/String;
 	public final fun getECJ_CONFIGURATION_NAME ()Ljava/lang/String;
 	public final fun getMAIN ()Ljava/lang/String;
-	public final fun getPREFERRED_JAVA_VERSION ()I
-	public final fun getREQUIRED_JAVA_VERSION ()I
+	public final fun getPREFERRED_JAVA_VERSION ()Lorg/gradle/jvm/toolchain/JavaLanguageVersion;
+	public final fun getREQUIRED_JAVA_VERSION ()Lorg/gradle/jvm/toolchain/JavaLanguageVersion;
 }
 
 public abstract class host/anzo/gradle/ecj/ECJExtension {
