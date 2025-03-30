@@ -3,10 +3,10 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version("0.16.3")
-    id("org.jetbrains.kotlin.jvm") version("2.0.20")
-    id("org.jetbrains.kotlin.plugin.sam.with.receiver") version("2.0.20")
-    id("com.gradle.plugin-publish") version("1.2.2")
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version("0.17.0")
+    id("org.jetbrains.kotlin.jvm") version("2.1.20")
+    id("org.jetbrains.kotlin.plugin.sam.with.receiver") version("2.1.20")
+    id("com.gradle.plugin-publish") version("1.3.1")
 }
 
 repositories {
@@ -19,7 +19,7 @@ java {
 }
 
 group = "host.anzo.gradle.ecj"
-version = "1.4"
+version = "1.5"
 
 kotlin {
     explicitApi()
@@ -28,8 +28,8 @@ kotlin {
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {
-                    apiVersion = KotlinVersion.KOTLIN_1_7
-                    languageVersion = KotlinVersion.KOTLIN_1_7
+                    apiVersion = KotlinVersion.KOTLIN_1_8
+                    languageVersion = KotlinVersion.KOTLIN_1_8
                 }
             }
         }
@@ -37,8 +37,8 @@ kotlin {
         compilations.named("main").configure {
             compileTaskProvider.configure {
                 compilerOptions {
-                    apiVersion = KotlinVersion.KOTLIN_1_7
-                    languageVersion = KotlinVersion.KOTLIN_1_7
+                    apiVersion = KotlinVersion.KOTLIN_1_8
+                    languageVersion = KotlinVersion.KOTLIN_1_8
                 }
             }
         }
