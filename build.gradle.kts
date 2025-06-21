@@ -19,7 +19,7 @@ java {
 }
 
 group = "host.anzo.gradle.ecj"
-version = "1.5"
+version = "1.7"
 
 kotlin {
     explicitApi()

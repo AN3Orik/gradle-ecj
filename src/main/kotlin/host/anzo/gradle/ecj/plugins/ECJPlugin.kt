@@ -60,11 +60,13 @@ public class ECJPlugin : Plugin<Project> {
 
             this.javaCompiler.convention(defaultJavaCompiler)
 
+            val projectName = project.name
             /* See https://docs.gradle.org/7.4.2/userguide/validation_problems.html#implementation_unknown */
             @Suppress("ObjectLiteralToLambda")
             doFirst(object : Action<Task> {
                 override fun execute(t: Task) {
-                    println("ECJ: Compiling project [${project.name}]...")
+                    println("ECJ: Compiling project [$projectName}]...")
+                    println("ECJ: Using compiler args [${options.compilerArgs?.joinToString(File.pathSeparator)}]")
 
                     var lombokPath = ""
                     val it = options.annotationProcessorPath?.iterator()
@@ -80,6 +82,7 @@ public class ECJPlugin : Plugin<Project> {
                         // Annotation processing support
                         options.compilerArgs?.add("--processor-module-path")
                         options.compilerArgs?.add(options.annotationProcessorPath?.joinToString(File.pathSeparator))
+                        println("ECJ: Using annotation processors [${options.annotationProcessorPath?.joinToString(File.pathSeparator)}]")
                     }
 
                     val javacExecutable = javaCompiler.orElse(defaultJavaCompiler).get().executablePath.asFile
