@@ -17,10 +17,10 @@ This plugin is based on [Gradle Eclipse Compiler for Java Plugin](https://github
 
 ```groovy
 plugins {
-    id "host.anzo.gradle.ecj" version "1.3"
+    id "host.anzo.gradle.ecj" version "1.7"
 }
 
 dependencies {
-    ecj("org.eclipse.jdt:ecj:3.40.0")
+    ecj("org.eclipse.jdt:ecj:3.41.0")
 }
 ```
